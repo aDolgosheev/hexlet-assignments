@@ -21,17 +21,17 @@ public class Application {
 
     // BEGIN
 
-//    @GetMapping("/posts")
-//    public List<Post> index() {
-//        return posts.stream().toList();
-//    }
-
     @GetMapping("/posts")
-    public Page<Post> index(
-            @RequestParam(defaultValue = "0") Integer page,
-            @RequestParam(defaultValue = "10") Integer limit) {
-        return new PageImpl<>(posts, PageRequest.of(page, limit), posts.size());
+    public List<Post> index() {
+        return posts.stream().toList();
     }
+
+//    @GetMapping("/posts")
+//    public Page<Post> index(
+//            @RequestParam(defaultValue = "0") Integer page,
+//            @RequestParam(defaultValue = "10") Integer limit) {
+//        return new PageImpl<>(posts, PageRequest.of(page, limit), posts.size());
+//    }
 
     @PostMapping("/posts")
     public Post create(@RequestBody Post post) {
