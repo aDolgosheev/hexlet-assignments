@@ -3,7 +3,6 @@ package exercise;
 import exercise.model.Post;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.domain.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,22 +40,22 @@ public class Application {
 
     @GetMapping("/posts/{id}")
     public Optional<Post> show(@PathVariable String id) {
-        var page = posts.stream()
+        var post = posts.stream()
                 .filter(p -> p.getId().equals(id))
                 .findFirst();
-        return page;
+        return post;
     }
 
     @PutMapping("/posts/{id}")
     public Post update(@PathVariable String id, @RequestBody Post data) {
-        var maybePage = posts.stream()
+        var maybePost = posts.stream()
                 .filter(p -> p.getId().equals(id))
                 .findFirst();
-        if (maybePage.isPresent()) {
-            var page = maybePage.get();
-            page.setId(data.getId());
-            page.setTitle(data.getTitle());
-            page.setBody(data.getBody());
+        if (maybePost.isPresent()) {
+            var post = maybePost.get();
+            post.setId(data.getId());
+            post.setTitle(data.getTitle());
+            post.setBody(data.getBody());
         }
         return data;
     }
@@ -66,5 +65,9 @@ public class Application {
         posts.removeIf(p -> p.getId().equals(id));
     }
 
+    @GetMapping("/")
+    String home() {
+        return "Hello world!";
+    }
     // END
 }
