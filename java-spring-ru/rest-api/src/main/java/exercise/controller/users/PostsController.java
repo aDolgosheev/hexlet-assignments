@@ -22,28 +22,42 @@ public class PostsController {
 
     private List<Post> posts = Data.getPosts();
 
-    @GetMapping("/users/{id}/posts")
-    public ResponseEntity<List<Post>> show(@PathVariable Integer id) {
-        var userPosts = posts.stream()
-                .filter(p -> p.getUserId() == id)
-                .toList();
-        return ResponseEntity.ok()
-                .body(userPosts);
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/users/{userId}/posts")
+    public Post create(@PathVariable Integer userId, @RequestBody Post post) {
+        post.setUserId(userId);
+        posts.add(post);
+        return post;
     }
 
-    @PostMapping("/users/{id}/posts")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Post> create(
-            @PathVariable Integer id,
-            @RequestBody String slug,
-            @RequestBody String title,
-            @RequestBody String body) {
-        Post post = new Post();
-        post.setUserId(id);
-        post.setSlug(slug);
-        post.setTitle(title);
-        post.setBody(body);
-        return ResponseEntity.ok().body(post);
+    @GetMapping("/users/{userId}/posts")
+    public List<Post> show(@PathVariable Integer userId) {
+        return posts.stream()
+                .filter(p -> p.getUserId() == userId).toList();
     }
+
+//    @GetMapping("/users/{id}/posts")
+//    public ResponseEntity<List<Post>> show(@PathVariable Integer id) {
+//        var userPosts = posts.stream()
+//                .filter(p -> p.getUserId() == id)
+//                .toList();
+//        return ResponseEntity.ok()
+//                .body(userPosts);
+//    }
+//
+//    @PostMapping("/users/{id}/posts")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public ResponseEntity<Post> create(
+//            @PathVariable Integer id,
+//            @RequestBody String slug,
+//            @RequestBody String title,
+//            @RequestBody String body) {
+//        Post post = new Post();
+//        post.setUserId(id);
+//        post.setSlug(slug);
+//        post.setTitle(title);
+//        post.setBody(body);
+//        return ResponseEntity.ok().body(post);
+//    }
 }
 // END
