@@ -36,8 +36,8 @@ public class PeopleController {
     }
 
     @PostMapping
-    public Person createPerson(Person person) {
-        return personRepository.save(person);
+    public void createPerson(Person person) {
+        personRepository.save(person);
     }
 
     @DeleteMapping(path = "/{id}")
