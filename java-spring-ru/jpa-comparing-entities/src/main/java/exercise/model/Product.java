@@ -1,16 +1,13 @@
 package exercise.model;
 
-import jakarta.persistence.*;
-
-import static jakarta.persistence.GenerationType.IDENTITY;
-
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.*;
 
 // BEGIN
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode(of = {"title", "price"})
