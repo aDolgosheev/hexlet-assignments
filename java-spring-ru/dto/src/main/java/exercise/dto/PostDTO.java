@@ -9,11 +9,13 @@ import lombok.Setter;
 @Setter
 public class PostDTO {
 
+    private List<CommentDTO> comments;
+
     private long id;
 
     private String title;
 
-    private String body;
+    private String body = comments.toString();
 }
 
 // END
