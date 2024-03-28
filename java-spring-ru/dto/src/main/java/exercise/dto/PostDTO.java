@@ -15,7 +15,7 @@ public class PostDTO {
 
     private String title;
 
-    private String body = comments.toString();
+    private String body;
 }
 
 // END
