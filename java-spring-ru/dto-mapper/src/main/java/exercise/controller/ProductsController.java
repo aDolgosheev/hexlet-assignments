@@ -35,7 +35,7 @@ public class ProductsController {
     private ProductMapper productMapper;
 
     @GetMapping(path = "")
-    @ResponseStatus(HttpStatus.OK)
+//    @ResponseStatus(HttpStatus.OK)
     public List<ProductDTO> index() {
         var list = productRepository.findAll();
 //        return list.stream().map(this::).toList();
@@ -48,7 +48,7 @@ public class ProductsController {
     }
 
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
+//    @ResponseStatus(HttpStatus.OK)
     public ProductDTO show(@PathVariable Long id) {
         var product = productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Not Found: " + id));
@@ -57,7 +57,7 @@ public class ProductsController {
         return postDTO;
     }
 
-    @PostMapping("/posts")
+    @PostMapping(path = "")
     @ResponseStatus(HttpStatus.CREATED)
     public ProductDTO create(@RequestBody ProductCreateDTO productData) {
         // Преобразование в сущность
@@ -68,7 +68,7 @@ public class ProductsController {
         return postDTO;
     }
 
-    @PutMapping("/posts/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ProductDTO update(@RequestBody ProductUpdateDTO productData, @PathVariable Long id) {
         var product = productRepository.findById(id)
