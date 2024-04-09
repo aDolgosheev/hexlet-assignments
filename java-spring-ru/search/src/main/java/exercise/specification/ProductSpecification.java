@@ -38,7 +38,7 @@ public class ProductSpecification {
     private Specification<Product> withRatingGt(Double rating) {
         return (root, query, cb) -> rating == null
                 ? cb.conjunction()
-                : cb.greaterThan(root.get("ratingGt"), rating);
+                : cb.greaterThan(root.get("rating"), rating);
     }
 
     private Specification<Product> withTitleCont(String substring) {
