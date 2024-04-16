@@ -56,11 +56,6 @@ public class User implements BaseEntity, UserDetails {
     // BEGIN
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return new ArrayList<GrantedAuthority>();
-    }
-
-    @Override
     public String getPassword() {
         return passwordDigest;
     }
@@ -68,6 +63,16 @@ public class User implements BaseEntity, UserDetails {
     @Override
     public String getUsername() {
         return email;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return new ArrayList<GrantedAuthority>();
     }
 
     @Override
@@ -82,11 +87,6 @@ public class User implements BaseEntity, UserDetails {
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
         return true;
     }
 
