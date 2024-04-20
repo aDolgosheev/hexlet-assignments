@@ -1,11 +1,12 @@
 # BEGIN
 
 spring:
-  profiles:
-    active: "stage"
+  config:
+    activate:
+      on-profile: staging
   datasource:
-    url: "jdbc:h2:file:./test"
-    username: "admin"
-    password: "admin"
+    url: jdbc:h2:file:./test
+    username: admin
+    password: 'admin'
 
 # END
