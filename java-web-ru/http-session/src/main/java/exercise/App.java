@@ -18,7 +18,7 @@ public final class App {
 
         // BEGIN
 
-        app.get("/hello", ctx -> {
+        app.get("/users", ctx -> {
             var page = ctx.queryParamAsClass("page", Integer.class).getOrDefault(1);
             var per = ctx.queryParamAsClass("per", Integer.class).getOrDefault(5);
 
